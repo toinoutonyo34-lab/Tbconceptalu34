@@ -8,13 +8,15 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     X-Frame-Options = "SAMEORIGIN"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
 
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=604800, immutable"
 
 [[redirects]]
   from = "/merci"
-  to = "/merci.html"
-  status = 200
+  to = "/merci/"
+  status = 301
