@@ -114,3 +114,14 @@ body{background:#fff}
 @media(min-width:980px){.spec-grid.three{grid-template-columns:repeat(3,1fr)}.spec-grid.four{grid-template-columns:repeat(4,1fr)}.photo-focus-strip.three{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:860px){.quote-layout{gap:16px}.quote-sidebar{order:0}.wizard-form{order:1}.quote-progress-card{position:sticky;top:74px;z-index:10}.wizard-actions{position:static!important}.mobile-bar{z-index:80}}
 @media(max-width:520px){.quote-progress-card{position:static}.wizard-form{box-shadow:none;border-left:0;border-right:0;border-radius:0;margin-inline:-16px;padding-inline:16px}.quote-page-section{padding-top:34px}.choice-card{padding:15px}.product-spec-section{padding:60px 0}.range-table{display:block;overflow-x:auto;white-space:normal}.range-table th,.range-table td{min-width:155px}.photo-focus-card{min-height:250px}}
+
+/* Typography restraint — less prototype, more architectural */
+.hero-content h1{font-size:clamp(3rem,6.2vw,5.25rem);letter-spacing:-.052em}
+.page-hero h1,.quote-hero h1{font-size:clamp(2.65rem,6vw,4.55rem);letter-spacing:-.048em}
+.section-title h2{font-size:clamp(2.05rem,3.8vw,3.6rem);letter-spacing:-.04em}
+.detail-hero h1{font-size:clamp(2.8rem,7vw,5rem)}
+.spec-card,.contact-card,.process-step,.location-card{border-radius:10px}
+.inspiration-card{border-radius:12px}
+.map-panel{border-radius:16px}
+.site-footer{border-top:1px solid rgba(255,255,255,.08)}
+@media(max-width:520px){.hero-content h1{font-size:clamp(2.75rem,12vw,3.8rem)}.page-hero h1,.quote-hero h1{font-size:2.45rem}.section-title h2{font-size:2.05rem}}
