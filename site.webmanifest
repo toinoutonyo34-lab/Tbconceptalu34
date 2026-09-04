@@ -1,0 +1,9 @@
+{
+  "name": "TB Concep'T Alu",
+  "short_name": "TB Concept Alu",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#073f8c",
+  "icons": []
+}
