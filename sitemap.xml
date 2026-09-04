@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://conceptalu34.fr/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://conceptalu34.fr/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://conceptalu34.fr/services/</loc><changefreq>monthly</changefreq><priority>.8</priority></url>
+  <url><loc>https://conceptalu34.fr/services/fenetres/</loc><changefreq>monthly</changefreq><priority>.8</priority></url>
+  <url><loc>https://conceptalu34.fr/services/baies-vitrees/</loc><changefreq>monthly</changefreq><priority>.8</priority></url>
+  <url><loc>https://conceptalu34.fr/services/portes/</loc><changefreq>monthly</changefreq><priority>.8</priority></url>
+  <url><loc>https://conceptalu34.fr/services/volets/</loc><changefreq>monthly</changefreq><priority>.8</priority></url>
+  <url><loc>https://conceptalu34.fr/services/portes-garage/</loc><changefreq>monthly</changefreq><priority>.8</priority></url>
+  <url><loc>https://conceptalu34.fr/services/stores-moustiquaires/</loc><changefreq>monthly</changefreq><priority>.8</priority></url>
+  <url><loc>https://conceptalu34.fr/services/depannage-reparation/</loc><changefreq>monthly</changefreq><priority>.8</priority></url>
+  <url><loc>https://conceptalu34.fr/services/motorisation/</loc><changefreq>monthly</changefreq><priority>.8</priority></url>
+  <url><loc>https://conceptalu34.fr/services/vitrages/</loc><changefreq>monthly</changefreq><priority>.8</priority></url>
+  <url><loc>https://conceptalu34.fr/services/pose-renovation/</loc><changefreq>monthly</changefreq><priority>.8</priority></url>
+  <url><loc>https://conceptalu34.fr/realisations/</loc><changefreq>monthly</changefreq><priority>.7</priority></url>
+  <url><loc>https://conceptalu34.fr/a-propos/</loc><changefreq>monthly</changefreq><priority>.7</priority></url>
+  <url><loc>https://conceptalu34.fr/zones-intervention/</loc><changefreq>monthly</changefreq><priority>.7</priority></url>
+  <url><loc>https://conceptalu34.fr/menuiserie-montpellier/</loc><changefreq>monthly</changefreq><priority>.7</priority></url>
+  <url><loc>https://conceptalu34.fr/menuiserie-sete/</loc><changefreq>monthly</changefreq><priority>.7</priority></url>
+  <url><loc>https://conceptalu34.fr/menuiserie-beziers/</loc><changefreq>monthly</changefreq><priority>.7</priority></url>
+  <url><loc>https://conceptalu34.fr/menuiserie-clermont-herault/</loc><changefreq>monthly</changefreq><priority>.7</priority></url>
+  <url><loc>https://conceptalu34.fr/devis/</loc><changefreq>monthly</changefreq><priority>.7</priority></url>
+  <url><loc>https://conceptalu34.fr/contact/</loc><changefreq>monthly</changefreq><priority>.7</priority></url>
+  <url><loc>https://conceptalu34.fr/faq/</loc><changefreq>monthly</changefreq><priority>.7</priority></url>
+  <url><loc>https://conceptalu34.fr/mentions-legales/</loc><changefreq>monthly</changefreq><priority>.7</priority></url>
+  <url><loc>https://conceptalu34.fr/confidentialite/</loc><changefreq>monthly</changefreq><priority>.7</priority></url>
 </urlset>
