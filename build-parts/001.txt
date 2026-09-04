@@ -1,0 +1,136 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { site, navigation } from './src/data/site.mjs';
+import { services, serviceExtras } from './src/data/services.mjs';
+import { locations } from './src/data/locations.mjs';
+import { realizations, inspirationGallery } from './src/data/realizations.mjs';
+
+const root = process.cwd();
+const out = path.join(root, 'dist');
+
+const pages = [];
+const addPage = (urlPath, html, opts = {}) => pages.push({ urlPath, html, index: opts.index !== false, priority: opts.priority ?? 0.7 });
+const esc = (value = '') => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+const json = value => JSON.stringify(value).replace(/</g, '\\u003c');
+const serviceBySlug = slug => services.find(s => s.slug === slug);
+
+function icon(name) {
+  const icons = {
+    arrow: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+    phone: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h3l2 5-2 2a16 16 0 006 6l2-2 5 2v3a2 2 0 01-2 2C11 21 3 13 3 5a2 2 0 012-2h2z"/></svg>',
+    quote: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg>',
+    menu: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
+    close: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+    pin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.3 7-12A7 7 0 005 9c0 6.7 7 12 7 12z"/><circle cx="12" cy="9" r="2"/></svg>',
+    check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg>',
+    home: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8v10H6V11M9 21v-6h6v6"/></svg>',
+    shield: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3 8-8 9-5-1-8-4-8-9V6z"/><path d="M8 12l3 3 5-6"/></svg>',
+    ruler: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18L18 4l2 2L6 20zM10 12l2 2M13 9l2 2M7 15l2 2"/></svg>',
+    tools: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6a4 4 0 005 5l-8 8a2 2 0 01-3-3l8-8a4 4 0 01-2-2z"/><path d="M6 4l4 4"/></svg>'
+  };
+  return icons[name] || icons.arrow;
+}
+
+function logo() {
+  return `<img src="/assets/logo.svg" width="640" height="180" alt="TB Concep'T Alu — Menuiserie aluminium, PVC et bois">`;
+}
+
+function header(active = '') {
+  const links = navigation.map(item => `<a class="nav-link ${active && item.href.includes(active) ? 'is-active' : ''}" href="${item.href}">${esc(item.label)}</a>`).join('');
+  return `
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="site-header" data-header>
+    <div class="utility-bar">
+      <div class="shell utility-inner">
+        <span>Menuiserie alu • PVC • bois — Hérault</span>
+        <div class="utility-actions"><a href="mailto:${site.email}">${site.email}</a><a href="tel:${site.phoneHref}">${site.phoneDisplay}</a></div>
+      </div>
+    </div>
+    <div class="shell header-main">
+      <a class="brand" href="/" aria-label="Accueil TB Concep'T Alu">${logo()}</a>
+      <nav class="desktop-nav" aria-label="Navigation principale">${links}<a class="btn btn-primary btn-sm" href="/devis/">Demander un devis</a></nav>
+      <div class="mobile-head-actions"><a class="icon-button" href="tel:${site.phoneHref}" aria-label="Appeler ${site.phoneDisplay}">${icon('phone')}</a><button class="icon-button menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">${icon('menu')}</button></div>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Navigation mobile">${links}<a class="btn btn-primary" href="/devis/">Demander un devis</a></nav>
+  </header>`;
+}
+
+function footer() {
+  return `
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div class="footer-brand">${logo()}<p>Menuiserie aluminium, PVC et bois. Pose, rénovation, fermetures et dépannage dans l'Hérault.</p><a class="footer-phone" href="tel:${site.phoneHref}">${site.phoneDisplay}</a></div>
+      <div><h2>Services</h2><a href="/services/fenetres/">Fenêtres</a><a href="/services/baies-vitrees/">Baies vitrées</a><a href="/services/portes/">Portes</a><a href="/services/volets/">Volets</a><a href="/services/depannage-reparation/">Dépannage</a></div>
+      <div><h2>TB Concep'T Alu</h2><a href="/a-propos/">À propos</a><a href="/realisations/">Réalisations</a><a href="/zones-intervention/">Zones d'intervention</a><a href="/faq/">FAQ</a><a href="/contact/">Contact</a></div>
+      <div><h2>Contact</h2><a href="mailto:${site.email}">${site.email}</a><span>Déplacement dans tout l'Hérault</span><span>Rendez-vous : nous contacter</span><a href="/devis/">Demander un devis</a></div>
+    </div>
+    <div class="shell footer-meta"><span>© <span data-year></span> ${site.name}</span><span>SIRET ${site.siret}</span><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Confidentialité</a></div>
+  </footer>
+  <a class="floating-contact" href="/contact/" aria-label="Contacter TB Concep'T Alu">${icon('mail')}</a><div class="mobile-bar" aria-label="Actions rapides"><a href="tel:${site.phoneHref}">${icon('phone')}<span>Appeler</span></a><a class="mobile-bar-primary" href="/devis/">${icon('quote')}<span>Devis</span></a></div>`;
+}
+
+function breadcrumbs(items) {
+  return `<nav class="breadcrumbs" aria-label="Fil d'Ariane"><a href="/">Accueil</a>${items.map((item, i) => `<span aria-hidden="true">/</span>${i === items.length - 1 ? `<span aria-current="page">${esc(item.label)}</span>` : `<a href="${item.href}">${esc(item.label)}</a>`}`).join('')}</nav>`;
+}
+
+function structuredData(type, data = {}) {
+  const base = {
+    '@context': 'https://schema.org',
+    '@type': type,
+    name: site.name,
+    url: site.baseUrl,
+    telephone: site.phoneHref,
+    email: site.email,
+    areaServed: { '@type': 'AdministrativeArea', name: 'Hérault' }
+  };
+  return `<script type="application/ld+json">${json({ ...base, ...data })}</script>`;
+}
+
+function layout({ title, description, canonical, body, active = '', robots = 'index,follow,max-image-preview:large', schema = '', pageClass = '', scripts = [] }) {
+  const url = canonical.startsWith('http') ? canonical : `${site.baseUrl}${canonical}`;
+  return `<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#062b63">
+  <meta name="color-scheme" content="light">
+  <title>${esc(title)}</title>
+  <meta name="description" content="${esc(description)}">
+  <meta name="robots" content="${robots}">
+  <link rel="canonical" href="${url}">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="stylesheet" href="/assets/site.css">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="${site.name}">
+  <meta property="og:title" content="${esc(title)}">
+  <meta property="og:description" content="${esc(description)}">
+  <meta property="og:url" content="${url}">
+  <meta property="og:image" content="${site.heroImage}">
+  <meta name="twitter:card" content="summary_large_image">
+  ${schema || structuredData('HomeAndConstructionBusiness', { description })}
+</head>
+<body class="${pageClass}">
+  ${header(active)}
+  <main id="contenu">${body}</main>
+  ${footer()}
+  <script src="/assets/app.js" defer></script>
+  ${scripts.map(src => `<script src="${src}" defer></script>`).join('\n')}
+</body>
+</html>`;
+}
+
+function sectionTitle(kicker, title, text = '', centered = false) {
+  return `<div class="section-title ${centered ? 'centered' : ''}"><span class="kicker">${esc(kicker)}</span><h2>${title}</h2>${text ? `<p>${text}</p>` : ''}</div>`;
+}
+
+function ctaBand(title = 'Un projet de menuiserie dans l’Hérault ?', text = 'Décrivez votre besoin en quelques étapes. Vous pourrez ajouter des dimensions, des photos et vos coordonnées.') {
+  return `<section class="cta-band"><div class="shell cta-band-inner reveal"><div><span class="kicker kicker-light">DEVIS GRATUIT</span><h2>${title}</h2><p>${text}</p></div><div class="cta-actions"><a class="btn btn-primary" href="/devis/">Demander un devis ${icon('arrow')}</a><a class="btn btn-ghost-light" href="tel:${site.phoneHref}">Appeler ${site.phoneDisplay}</a></div></div></section>`;
+}
+
+function renderServiceCards(items = services.slice(0, 6)) {
+  return `<div class="service-grid">${items.map((s, i) => `<article class="photo-card reveal"><a class="photo-card-media" href="/services/${s.slug}/"><img src="${s.image}" alt="${esc(s.short)}" loading="lazy" width="900" height="650"><span class="photo-card-index">${String(i + 1).padStart(
