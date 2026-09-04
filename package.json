@@ -1,0 +1,10 @@
+{
+  "name": "tbconceptalu34-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node --check src/app.js && node --check src/devis.js && node build.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
