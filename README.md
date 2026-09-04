@@ -1,25 +1,17 @@
-# TB Concep'T Alu — Site vitrine
+# TB Concep'T Alu — site premium
 
-Site officiel de **TB Concep'T Alu** (`conceptalu34.fr`).
+Site officiel de TB Concep'T Alu.
 
-## Contenu
+## Version premium
+- site statique multi-pages sans dépendance front-end ;
+- design mobile-first bleu/or inspiré de la carte de visite ;
+- pages services dédiées ;
+- pages locales uniques pour Montpellier, Sète, Béziers et Clermont-l'Hérault ;
+- devis Netlify Forms en 10 étapes avec photos/documents ;
+- contact, FAQ, mentions légales et confidentialité ;
+- réalisations prêtes à recevoir des chantiers réels ;
+- catalogue/fournisseurs/produits préparés mais noindex tant qu'ils sont vides ;
+- architecture de données future dans src/data/.
 
-- identité visuelle bleu / jaune inspirée de la carte de visite ;
-- responsive mobile / tablette / bureau ;
-- présentation des prestations ;
-- formulaire de devis Netlify Forms avec honeypot anti-spam ;
-- page de confirmation ;
-- SEO de base, Schema.org, sitemap et robots.txt ;
-- appels téléphoniques directs sur mobile ;
-- animations discrètes avec respect de `prefers-reduced-motion` ;
-- aucune dépendance JavaScript externe.
-
-## Déploiement Netlify
-
-Projet statique : aucun build n'est requis. Le répertoire de publication est la racine (`.`).
-
-Le formulaire `demande-devis` nécessite que **Netlify Forms** soit activé sur le projet.
-
-## Images
-
-La photo d'architecture utilisée comme illustration provient d'Unsplash. Elle sert uniquement de visuel d'ambiance et n'est pas présentée comme une réalisation de l'entreprise.
+## Règles de contenu
+Ne jamais présenter une photo d'inspiration comme une réalisation de TB Concep'T Alu. Ne jamais inventer avis, certification, assurance, garantie ou ancienneté.
