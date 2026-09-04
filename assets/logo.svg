@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180" role="img" aria-labelledby="title desc">
+  <title id="title">TB Concep'T Alu</title>
+  <desc id="desc">Logo bleu et jaune TB Concep'T Alu</desc>
+  <defs>
+    <linearGradient id="blue" x1="0" x2="1"><stop stop-color="#053a7e"/><stop offset="1" stop-color="#0a5cc2"/></linearGradient>
+    <linearGradient id="gold" x1="0" x2="1"><stop stop-color="#f6b400"/><stop offset="1" stop-color="#ffca2f"/></linearGradient>
+  </defs>
+  <g transform="translate(12 10)">
+    <circle cx="80" cy="80" r="70" fill="none" stroke="#f6b400" stroke-width="4" stroke-dasharray="250 90" transform="rotate(-28 80 80)"/>
+    <circle cx="80" cy="80" r="62" fill="none" stroke="#073f8c" stroke-width="4" stroke-dasharray="220 110" transform="rotate(148 80 80)"/>
+    <text x="27" y="112" font-family="Arial Black,Arial,sans-serif" font-size="92" font-style="italic" font-weight="900" fill="url(#blue)" transform="skewX(-8)">T</text>
+    <text x="76" y="120" font-family="Arial Black,Arial,sans-serif" font-size="86" font-style="italic" font-weight="900" fill="url(#gold)" transform="skewX(-8)">B</text>
+  </g>
+  <text x="175" y="83" font-family="Arial Black,Arial,sans-serif" font-size="55" font-style="italic" font-weight="900" fill="#073f8c">Concep'T</text>
+  <text x="430" y="83" font-family="Arial Black,Arial,sans-serif" font-size="55" font-style="italic" font-weight="900" fill="#f6b400">Alu</text>
+  <line x1="178" y1="101" x2="585" y2="101" stroke="#073f8c" stroke-width="3"/>
+  <line x1="455" y1="101" x2="585" y2="101" stroke="#f6b400" stroke-width="3"/>
+  <text x="180" y="135" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="700" letter-spacing="5" fill="#173b68">MENUISERIE ALU • PVC • BOIS</text>
+</svg>
