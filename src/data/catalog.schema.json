@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TB Concept Alu catalogue data model",
+  "type": "object",
+  "properties": {
+    "suppliers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "country"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "logo": {"type": "string"},
+          "country": {"type": "string"},
+          "contact": {"type": "object"},
+          "leadTime": {"type": "string"},
+          "terms": {"type": "string"},
+          "documents": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "supplierId", "category", "range", "reference"],
+        "properties": {
+          "id": {"type": "string"},
+          "supplierId": {"type": "string"},
+          "category": {"type": "string"},
+          "range": {"type": "string"},
+          "reference": {"type": "string"},
+          "images": {"type": "array", "items": {"type": "string"}},
+          "material": {"type": "string"},
+          "dimensions": {"type": "object"},
+          "colors": {"type": "array", "items": {"type": "string"}},
+          "openingTypes": {"type": "array", "items": {"type": "string"}},
+          "glazing": {"type": "array", "items": {"type": "string"}},
+          "thermalPerformance": {"type": "object"},
+          "acousticPerformance": {"type": "object"},
+          "security": {"type": "array", "items": {"type": "string"}},
+          "warranty": {"type": "string"},
+          "documents": {"type": "array", "items": {"type": "string"}},
+          "price": {"type": ["number", "null"]},
+          "availability": {"type": "string"}
+        }
+      }
+    }
+  }
+}

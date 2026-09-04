@@ -1,9 +1,1 @@
-{
-  "name": "TB Concep'T Alu",
-  "short_name": "TB Concept Alu",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#073f8c",
-  "icons": []
-}
+{"name":"TB Concep'T Alu","short_name":"TB Concept Alu","start_url":"/","display":"standalone","background_color":"#ffffff","theme_color":"#062b63","description":"Menuiserie alu, PVC et bois dans l'Hérault."}
