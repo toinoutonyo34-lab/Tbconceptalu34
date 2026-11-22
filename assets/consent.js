@@ -1,18 +1,26 @@
-/* Mesure d’audience : le script GA4 n’est chargé qu’après acceptation (CNIL).
-   Laisser MEASUREMENT_ID vide tant que le flux web n’est pas créé. */
+/* Mesure d’audience : gtag n’est chargé qu’après acceptation (CNIL).
+   Consent mode : défaut « denied », puis « granted » uniquement si l’utilisateur accepte. */
 (function () {
-  var MEASUREMENT_ID = "";
+  var MEASUREMENT_ID = "G-SKJ8T88HPR";
   var STORAGE_KEY = "tb-consent-analytics";
   if (!MEASUREMENT_ID) return;
 
   var decided = null;
   try { decided = localStorage.getItem(STORAGE_KEY); } catch (e) {}
 
-  function loadGtag() {
+  function loadGtagAfterAccept() {
     if (window.__tbGtagLoaded) return;
     window.__tbGtagLoaded = true;
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+    gtag("consent", "default", {
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      analytics_storage: "denied",
+      wait_for_update: 500
+    });
+    gtag("consent", "update", { analytics_storage: "granted" });
     gtag("js", new Date());
     gtag("config", MEASUREMENT_ID, { anonymize_ip: true });
     var s = document.createElement("script");
@@ -21,12 +29,23 @@
     document.head.appendChild(s);
   }
 
+  function syncBannerOffset() {
+    var banner = document.getElementById("cookie-banner");
+    if (!banner) {
+      document.documentElement.style.removeProperty("--cookie-banner-h");
+      return;
+    }
+    document.documentElement.style.setProperty("--cookie-banner-h", banner.offsetHeight + "px");
+  }
+
   function setChoice(value) {
     try { localStorage.setItem(STORAGE_KEY, value); } catch (e) {}
     var banner = document.getElementById("cookie-banner");
     if (banner) banner.remove();
     document.documentElement.classList.remove("has-cookie-banner");
-    if (value === "granted") loadGtag();
+    document.documentElement.style.removeProperty("--cookie-banner-h");
+    window.removeEventListener("resize", syncBannerOffset);
+    if (value === "granted") loadGtagAfterAccept();
   }
 
   function showBanner() {
@@ -50,6 +69,8 @@
       if (btn) setChoice(btn.getAttribute("data-cookie-choice"));
     });
     document.body.appendChild(el);
+    syncBannerOffset();
+    window.addEventListener("resize", syncBannerOffset);
   }
 
   window.tbResetAnalyticsConsent = function () {
@@ -57,7 +78,7 @@
     showBanner();
   };
 
-  if (decided === "granted") loadGtag();
+  if (decided === "granted") loadGtagAfterAccept();
   else if (decided !== "denied") {
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", showBanner);
     else showBanner();
