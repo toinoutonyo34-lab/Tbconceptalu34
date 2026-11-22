@@ -10,8 +10,8 @@ export const site = {
   siret: "10902038800012",
   area: "Hérault",
   whatsappEnabled: false,
-  heroImage: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=82",
-  heroImageMobile: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=78",
+  heroImage: "/assets/images/photo-1600607687939-ce8a6c25118c.webp",
+  heroImageMobile: "/assets/images/photo-1600607687939-ce8a6c25118c.webp",
   social: { facebook: "", instagram: "", linkedin: "" }
 };
 

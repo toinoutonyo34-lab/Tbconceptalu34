@@ -1,5 +1,6 @@
 [build]
-  publish = "."
+  command = "node build.mjs"
+  publish = "dist"
 
 [[headers]]
   for = "/*"
@@ -14,7 +15,7 @@
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[redirects]]
   from = "/merci"

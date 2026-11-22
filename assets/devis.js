@@ -1,6 +1,8 @@
 (() => {
   const form = document.querySelector('[data-wizard]');
   if (!form) return;
+  form.noValidate = true;
+  form.classList.add('is-enhanced');
 
   const steps = [...form.querySelectorAll('.wizard-step')];
   const back = form.querySelector('[data-back]');
@@ -38,7 +40,7 @@
 
     const fields = [...step.querySelectorAll('input, select, textarea')];
     for (const field of fields) {
-      if (field.disabled || field.type === 'file' || field.type === 'hidden') continue;
+      if (field.disabled || field.type === 'hidden') continue;
       if (!field.checkValidity()) {
         field.reportValidity();
         if (typeof field.focus === 'function') field.focus({ preventScroll: true });
@@ -90,6 +92,7 @@
       step.setAttribute('aria-hidden', active ? 'false' : 'true');
     });
 
+    back.hidden = false;
     back.disabled = current === 0;
     next.hidden = current === steps.length - 1;
     submit.hidden = current !== steps.length - 1;
@@ -140,6 +143,8 @@
   back.addEventListener('click', () => show(current - 1));
 
   form.addEventListener('submit', (event) => {
+    if (current < steps.length - 1) { event.preventDefault(); if (validateStep(current)) show(current + 1); return; }
+    for (let i=0;i<steps.length;i++) { const invalid=[...steps[i].querySelectorAll('input, select, textarea')].find(f=>!f.checkValidity()); if(invalid){ event.preventDefault(); show(i); invalid.reportValidity(); return; } }
     if (!validateStep(current)) {
       event.preventDefault();
       return;
@@ -149,16 +154,15 @@
       .flatMap((input) => [...input.files]);
     const total = files.reduce((sum, file) => sum + file.size, 0);
 
-    if (total > 7.5 * 1024 * 1024) {
+    if (total > 7 * 1024 * 1024) {
       event.preventDefault();
       status.textContent = 'Les fichiers dépassent la taille autorisée. Réduisez la taille des photos ou envoyez moins de fichiers.';
       status.classList.add('is-error');
       return;
     }
 
-    submit.disabled = true;
-    submit.textContent = 'Envoi en cours…';
-  });
+
+  }, true);
 
   show(0);
 })();

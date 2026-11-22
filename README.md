@@ -1,17 +1,9 @@
-# TB Concep'T Alu — site premium
+# TB Concept Alu — refonte 2026
 
-Site officiel de TB Concep'T Alu.
+Site statique issu du dépôt existant.
 
-## Version premium
-- site statique multi-pages sans dépendance front-end ;
-- design mobile-first bleu/or inspiré de la carte de visite ;
-- pages services dédiées ;
-- pages locales uniques pour Montpellier, Sète, Béziers et Clermont-l'Hérault ;
-- devis Netlify Forms en 10 étapes avec photos/documents ;
-- contact, FAQ, mentions légales et confidentialité ;
-- réalisations prêtes à recevoir des chantiers réels ;
-- catalogue/fournisseurs/produits préparés mais noindex tant qu'ils sont vides ;
-- architecture de données future dans src/data/.
+Construction : `node build.mjs`. Dossier public : `dist/`. Netlify est configuré dans netlify.toml. Aucun paquet à installer. Les HTML à la racine et dans les dossiers de pages sont les sources publiées. Les styles et scripts se trouvent dans assets/ ; leurs copies éditables dans src/ doivent rester synchronisées. Les données dans src/data/ sont conservées pour une future génération et ne régénèrent pas les pages automatiquement.
 
-## Règles de contenu
-Ne jamais présenter une photo d'inspiration comme une réalisation de TB Concep'T Alu. Ne jamais inventer avis, certification, assurance, garantie ou ancienneté.
+Les formulaires utilisent Netlify Forms ; activer la détection et les notifications puis vérifier une réception réelle après déploiement. Les aperçus locaux ne transmettent aucune demande.
+
+Aucun avis ou chantier fictif : les photographies sont des inspirations identifiées. Voir docs/IMAGES.md.
