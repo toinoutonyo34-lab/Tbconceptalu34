@@ -55,7 +55,7 @@
   const now=new Date(); const today=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10); date.min=today;
   select.addEventListener('change',update);update();
  }
- document.querySelectorAll('form[data-netlify]').forEach(form=>{
+ document.querySelectorAll('form[data-netlify], form[name="devis-rapide"], form[name="contact-general"], form[name="demande-devis-premium"]').forEach(form=>{
   let status=form.querySelector('[data-form-status]');
   if(!status){status=document.createElement('p');status.className='form-status';status.setAttribute('role','status');status.setAttribute('aria-live','polite');form.append(status);}
   form.addEventListener('submit',async event=>{
