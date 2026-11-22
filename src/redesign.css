@@ -516,3 +516,52 @@ table.range-table,table{
 .cta-panel h2,.cta-panel h3{
   color:#fff!important;
 }
+
+/* Bannière cookies — au-dessus de la barre d’appel, Design C */
+#cookie-banner{
+  position:fixed;
+  left:0;right:0;bottom:0;
+  z-index:80;
+  background:#0d0d0d;
+  color:#fff;
+  border-top:3px solid #f5c400;
+  padding:1rem 1.1rem calc(1rem + env(safe-area-inset-bottom,0px));
+  box-shadow:0 -8px 24px rgba(0,0,0,.28);
+}
+#cookie-banner .cookie-banner-inner{
+  max-width:1120px;
+  margin:0 auto;
+  display:flex;
+  gap:1rem;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+#cookie-banner p{
+  margin:0;
+  flex:1 1 16rem;
+  font-size:.92rem;
+  line-height:1.45;
+  color:#f3f3f3;
+}
+#cookie-banner a{color:#f5c400;text-decoration:underline;}
+#cookie-banner .cookie-banner-actions{display:flex;gap:.6rem;flex-wrap:wrap;}
+#cookie-banner button{
+  font-family:inherit;
+  font-weight:700;
+  letter-spacing:.02em;
+  border:0;
+  cursor:pointer;
+  padding:.7rem 1.1rem;
+  min-height:44px;
+}
+#cookie-banner .cookie-accept{background:#f5c400;color:#0d0d0d;}
+#cookie-banner .cookie-refuse{background:transparent;color:#fff;border:1px solid #fff;}
+.has-cookie-banner body{padding-bottom:0;}
+.has-cookie-banner .sticky-bar{bottom:auto; /* stays; banner sits above via padding on banner */ }
+@media (max-width:699px){
+  #cookie-banner{padding-bottom:calc(4.6rem + env(safe-area-inset-bottom,0px));}
+}
+@media (min-width:700px){
+  #cookie-banner{padding-bottom:calc(1rem + env(safe-area-inset-bottom,0px));}
+}
